@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Publications | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center fw-bold mb-5">Research Papers & Study Resources</h1>
+
+    <div class="row g-4">
+        {% for pub in publications %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <span class="badge bg-secondary mb-2">{{ pub.type }}</span>
+                    <h5 class="card-title">{{ pub.title }}</h5>
+                    <p class="card-text small text-muted">{{ pub.description }}</p>
+                    <h5 class="text-primary">₹{{ pub.price }}</h5>
+                    <div class="d-grid mt-3">
+                        <button class="btn btn-outline-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <span class="badge bg-secondary mb-2">Resource</span>
+                    <h5 class="card-title">Applied Cybernetics Module 1</h5>
+                    <p class="card-text small text-muted">Core concepts of CHEM framework for beginners.</p>
+                    <h5 class="text-primary">₹150</h5>
+                    <div class="d-grid mt-3">
+                        <button class="btn btn-outline-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <span class="badge bg-secondary mb-2">Book</span>
+                    <h5 class="card-title">Human Engineering Methods</h5>
+                    <p class="card-text small text-muted">A deep dive into performance optimization.</p>
+                    <h5 class="text-primary">₹150</h5>
+                    <div class="d-grid mt-3">
+                        <button class="btn btn-outline-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

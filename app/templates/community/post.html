@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | Forum{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('community.index') }}">Forum</a></li>
+                    <li class="breadcrumb-item active">{{ post.title }}</li>
+                </ol>
+            </nav>
+
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h2 class="fw-bold">{{ post.title }}</h2>
+                    <p class="text-muted small">Posted by {{ post.author.username if post.author else 'Unknown' }} on {{ post.created_at.strftime('%b %d, %Y %H:%M') }}</p>
+                    <hr>
+                    <div class="post-content">
+                        {{ post.content }}
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-3">Replies</h4>
+            {% for reply in post.replies %}
+            <div class="card shadow-sm border-0 mb-3">
+                <div class="card-body">
+                    <p class="small text-muted mb-2">{{ reply.author.username if reply.author else 'Unknown' }} replied on {{ reply.created_at.strftime('%b %d, %Y %H:%M') }}</p>
+                    <p class="mb-0">{{ reply.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="card shadow-sm border-0 mt-5">
+                <div class="card-body">
+                    <h5>Post a Reply</h5>
+                    {% if current_user.is_authenticated %}
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.content(class="form-control", rows="4", placeholder="Share your thoughts...") }}
+                        </div>
+                        {{ form.submit(class="btn btn-primary") }}
+                    </form>
+                    {% else %}
+                    <p>Please <a href="{{ url_for('auth.login') }}">login</a> to reply to this post.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}My Referrals | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4">Referral Program</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 bg-primary text-white mb-4">
+                <div class="card-body p-4">
+                    <h5>Invite Friends</h5>
+                    <p class="small">Share your referral code and earn rewards when they enroll in CHEA or buy resources.</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="CHEM{{ current_user.id }}REFF" readonly>
+                        <button class="btn btn-warning" type="button">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5>My Referrals</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Referred Email</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for referral in referrals %}
+                                <tr>
+                                    <td>{{ referral.referred_email }}</td>
+                                    <td><span class="badge bg-info">{{ referral.status }}</span></td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="2" class="text-center text-muted">You haven't referred anyone yet.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
