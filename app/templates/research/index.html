@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Research | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5" style="background: #212529;">
+    <div class="container">
+        <h1 class="display-4 fw-bold">CHEM Research</h1>
+        <p class="lead">Cybernetics & Human Engineering Methods</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="mb-4">Framework Overview</h2>
+            <p>CHEM is built upon the principles of cybernetics—the science of communications and automatic control systems in both machines and living things. We apply these methods to human learning to create high-efficiency educational environments.</p>
+            
+            <h3 class="mt-5 mb-3">Key Research Areas</h3>
+            <div class="accordion mb-5" id="researchAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            Cybernetics in Education
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#researchAccordion">
+                        <div class="accordion-body">
+                            Investigating how feedback loops can be optimized to reduce cognitive load and increase retention in student-centered learning environments.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            Human Intelligence Engineering
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#researchAccordion">
+                        <div class="accordion-body">
+                            Developing methods to enhance neural plasticity and focus through structured learning routines and adaptive intelligence tests.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Recent Publications</h3>
+            {% for paper in papers %}
+            <div class="card mb-3 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ paper.title }}</h5>
+                    <p class="small text-muted">{{ paper.authors }} | {{ paper.publication_date }}</p>
+                    <p class="card-text">{{ paper.abstract }}</p>
+                    <a href="{{ paper.link }}" target="_blank" class="btn btn-sm btn-outline-dark">Read Paper</a>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-muted">Explore our research on <a href="https://scholar.google.com/citations?user=emDJo-UAAAAJ&hl=en" target="_blank">Google Scholar</a>.</p>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-light">
+                <div class="card-body">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{{ url_for('research.publications') }}" class="text-decoration-none">Study Resources</a></li>
+                        <li class="mb-2"><a href="https://scholar.google.com/citations?user=emDJo-UAAAAJ&hl=en" target="_blank" class="text-decoration-none">Google Scholar Profile</a></li>
+                        <li class="mb-2"><a href="{{ url_for('main.chea') }}" class="text-decoration-none">CHEA Program</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

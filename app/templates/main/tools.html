@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Tools | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center fw-bold mb-5">Learning Tools & Academic Solutions</h1>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="fw-bold">Study Bot</h3>
+                    <p class="badge bg-info">Offline Product</p>
+                    <p class="text-muted">An offline physical assistant for focused learning sessions. Prevents distractions and helps maintain a high-performance study loop.</p>
+                    <button class="btn btn-primary w-100">Purchase</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="fw-bold">SpeechNova</h3>
+                    <p class="badge bg-info">Android App</p>
+                    <p class="text-muted">A translator, tutor, and learning assistant in one app. Designed for offline use to ensure privacy and focus.</p>
+                    <button class="btn btn-primary w-100">Purchase / Download</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="fw-bold">Question Paper Generator</h3>
+                    <p class="badge bg-secondary">Institution Focused</p>
+                    <p class="text-muted">Generate high-quality assessment papers instantly based on difficulty levels and curriculum standards.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-outline-primary w-100">Request Demo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
