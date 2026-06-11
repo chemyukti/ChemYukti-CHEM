@@ -1,0 +1,1442 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block meta_description %}ChemYukti — Educational Technology, Research & Learning Platform powered by CHEM (Cybernetics & Human Engineering Methods) by Parashmani Datta (2026). Research-Informed. Learner-Focused. Outcome-Oriented.{% endblock %}
+
+{% block extra_styles %}
+/* ── HERO ─────────────────────────────────────────────── */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--dark);
+}
+
+.hero-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 60% 0%, rgba(15,76,129,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 10% 80%, rgba(13,148,136,0.25) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 90% 90%, rgba(247,201,72,0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(247,201,72,0.1);
+    border: 1px solid rgba(247,201,72,0.3);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.hero-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.hero-logo-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(15,76,129,0.5);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.hero-tagline-block {
+    margin: 1.5rem 0 2rem;
+}
+
+.hero-tagline-main {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.hero-tagline-chem {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    color: var(--teal-light);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.hero-tagline-author {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.hero-tagline-slogan {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--teal-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 1rem;
+}
+
+.hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-glass);
+}
+
+.hero-stat-item { text-align: center; }
+.hero-stat-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+}
+.hero-stat-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ── SECTION SHARED ────────────────────────────────────── */
+.section-label {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--teal-light);
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 540px;
+    line-height: 1.7;
+}
+
+/* ── PROBLEM SECTION ───────────────────────────────────── */
+.problem-section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.problem-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.problem-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.08);
+    border-color: var(--primary-light);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.problem-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1.25rem;
+}
+
+.problem-card h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    margin-bottom: 0.6rem;
+}
+
+.problem-card p { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+
+/* ── CHEM FRAMEWORK SECTION ────────────────────────────── */
+.chem-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #070d18 0%, #0b1120 100%);
+    border-top: 1px solid var(--border-glass);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.chem-pillar {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    height: 100%;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.chem-pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.chem-pillar.c::before { background: linear-gradient(90deg, #0f4c81, #1a6fba); }
+.chem-pillar.h::before { background: linear-gradient(90deg, #0d9488, #14b8a6); }
+.chem-pillar.e::before { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.chem-pillar.m::before { background: linear-gradient(90deg, #f7c948, #e6b520); }
+
+.chem-pillar:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.chem-pillar-letter {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.chem-pillar.c .chem-pillar-letter { color: var(--primary-light); }
+.chem-pillar.h .chem-pillar-letter { color: var(--teal-light); }
+.chem-pillar.e .chem-pillar-letter { color: #a78bfa; }
+.chem-pillar.m .chem-pillar-letter { color: var(--accent); }
+
+.chem-pillar h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+}
+
+.chem-pillar p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin: 0; }
+
+/* ── GOAL CARDS ────────────────────────────────────────── */
+.goals-section { padding: 6rem 0; }
+
+.goal-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    height: 100%;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.goal-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255,255,255,0.08);
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(247,201,72,0.1);
+    color: inherit;
+    text-decoration: none;
+}
+
+.goal-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    transition: transform 0.3s;
+}
+
+.goal-card:hover .goal-emoji { transform: scale(1.2); }
+
+.goal-card h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.goal-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+
+/* ── CHEA SECTION ──────────────────────────────────────── */
+.chea-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(15,76,129,0.15) 0%, rgba(13,148,136,0.1) 100%);
+    border-top: 1px solid var(--border-glass);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.chea-badge {
+    background: linear-gradient(135deg, var(--primary), var(--teal));
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.chea-badge::after {
+    content: 'CHEA';
+    position: absolute;
+    bottom: -20px; right: -10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 8rem;
+    font-weight: 900;
+    opacity: 0.07;
+    color: #fff;
+    pointer-events: none;
+}
+
+/* ── ASSESSMENT PLATFORMS ──────────────────────────────── */
+.assessment-section { padding: 6rem 0; }
+
+.platform-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.platform-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.02));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.platform-card:hover {
+    transform: translateY(-6px);
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.platform-card:hover::before { opacity: 1; }
+
+.platform-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin: 0 auto 1.25rem;
+}
+
+/* ── RESEARCH SECTION ──────────────────────────────────── */
+.research-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #070d18 0%, #0b1120 100%);
+    border-top: 1px solid var(--border-glass);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.research-highlight-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.research-highlight-card:hover {
+    border-color: var(--teal-light);
+    background: rgba(13,148,136,0.05);
+    transform: translateY(-4px);
+}
+
+/* ── BLUEPRINT CTA ─────────────────────────────────────── */
+.blueprint-section {
+    padding: 6rem 0;
+}
+
+.blueprint-card {
+    background: linear-gradient(135deg, rgba(15,76,129,0.3) 0%, rgba(13,148,136,0.2) 100%);
+    border: 1px solid rgba(15,76,129,0.4);
+    border-radius: var(--radius-xl);
+    padding: 4rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.blueprint-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at center, rgba(247,201,72,0.05), transparent 60%);
+    pointer-events: none;
+}
+
+/* ── TESTIMONIALS ──────────────────────────────────────── */
+.testimonials-section { padding: 6rem 0; }
+
+.testimonial-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.testimonial-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+.testimonial-stars { color: var(--accent); font-size: 1rem; margin-bottom: 1rem; }
+.testimonial-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+}
+.testimonial-author {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.92rem;
+}
+.testimonial-role { color: var(--text-muted); font-size: 0.8rem; }
+
+/* ── MENTOR CARDS ──────────────────────────────────────── */
+.mentors-section { padding: 6rem 0; }
+
+.mentor-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.mentor-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--teal-light);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.mentor-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800; font-size: 1.5rem; color: #fff;
+    margin: 0 auto 1rem;
+}
+
+.mentor-card h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; color: #fff;
+    margin-bottom: 0.3rem; font-size: 1rem;
+}
+
+.mentor-subject {
+    color: var(--teal-light);
+    font-size: 0.85rem; font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.mentor-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; }
+
+/* ── SOLUTIONS ─────────────────────────────────────────── */
+.solutions-section { padding: 6rem 0; }
+.solution-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: all 0.3s;
+    height: 100%;
+}
+.solution-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-light);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+.solution-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+.solution-card h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; color: #fff;
+    margin-bottom: 0.5rem;
+}
+.solution-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
+
+/* ── FAQ ───────────────────────────────────────────────── */
+.faq-section {
+    padding: 6rem 0;
+    background: #070d18;
+    border-top: 1px solid var(--border-glass);
+}
+
+.accordion-chemyukti .accordion-item {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg) !important;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.accordion-chemyukti .accordion-button {
+    background: transparent;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-chemyukti .accordion-button:not(.collapsed) {
+    background: rgba(15,76,129,0.2);
+    color: var(--accent);
+}
+
+.accordion-chemyukti .accordion-button::after {
+    filter: invert(1);
+}
+
+.accordion-chemyukti .accordion-body {
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    padding: 0 1.5rem 1.25rem;
+}
+
+/* ── PAYMENT CTA SECTION ───────────────────────────────── */
+.payment-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, rgba(247,201,72,0.08), rgba(15,76,129,0.15));
+    border-top: 1px solid var(--border-glass);
+}
+
+/* ── TOOLS SECTION ─────────────────────────────────────── */
+.tools-section { padding: 6rem 0; }
+.tool-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+}
+.tool-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+.tool-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+.tool-card h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; color: #fff; margin-bottom: 0.5rem;
+}
+.tool-card p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem; }
+{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="hero-section">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="container hero-content py-5">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-7">
+                <div class="hero-eyebrow">
+                    <i class="bi bi-stars"></i>
+                    Est. 2026 · India's Learning Intelligence Platform
+                </div>
+
+                <div class="hero-logo-wrap">
+                    <img src="{{ url_for('static', filename='img/chemyukti-logo.png') }}"
+                         alt="ChemYukti Logo" class="hero-logo-img"
+                         onerror="this.style.display='none'">
+                    <h1 class="hero-title">ChemYukti</h1>
+                </div>
+
+                <div class="hero-tagline-block">
+                    <p class="hero-tagline-main">
+                        Educational Technology, Research &amp; Learning Platform
+                    </p>
+                    <p class="hero-tagline-chem">
+                        <i class="bi bi-cpu me-1"></i>
+                        Powered by <strong>CHEM</strong> — Cybernetics &amp; Human Engineering Methods
+                    </p>
+                    <p class="hero-tagline-author">
+                        Conceptualized &amp; Founded by <strong>Parashmani Datta</strong>, 2026
+                    </p>
+                    <p class="hero-tagline-slogan">
+                        Research-Informed. Learner-Focused. Outcome-Oriented.
+                    </p>
+                </div>
+
+                <div class="hero-cta-group">
+                    <a href="{{ url_for('main.learning_blueprint') }}" class="btn btn-accent-cta btn-lg">
+                        <i class="bi bi-lightning-fill me-2"></i>Take Free Learning Assessment
+                    </a>
+                    <a href="{{ url_for('main.chea') }}" class="btn btn-glass-cta btn-lg">
+                        <i class="bi bi-mortarboard me-2"></i>Explore CHEA
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-num">CHEM</span>
+                        <span class="hero-stat-label">Original Framework</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-num">3</span>
+                        <span class="hero-stat-label">Platform Ecosystem</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-num">∞</span>
+                        <span class="hero-stat-label">Learning Potential</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-num">2026</span>
+                        <span class="hero-stat-label">Research Foundation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <!-- CHEM Framework Visual Card -->
+                <div class="glass-card p-4">
+                    <p class="section-label mb-3">The CHEM Framework</p>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:2.2rem;color:var(--primary-light);line-height:1;min-width:40px;">C</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.95rem;">Cybernetics</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Systems-based approach using feedback loops to regulate and optimise the learning process.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:2.2rem;color:var(--teal-light);line-height:1;min-width:40px;">H</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.95rem;">Human Engineering</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Designing learning environments around the actual architecture of human cognition.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:2.2rem;color:#a78bfa;line-height:1;min-width:40px;">E</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.95rem;">Engineering Methods</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Applying structured, repeatable methods to make outcomes measurable and predictable.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:2.2rem;color:var(--accent);line-height:1;min-width:40px;">M</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.95rem;">Methods by Parashmani Datta</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Original research integrating cybernetics with pedagogy for a new era of learning intelligence.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border-color:var(--border-glass);margin:1.5rem 0 1rem;">
+                    <a href="{{ url_for('research.index') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-journal-richtext me-2"></i>Read the Research
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     WHY STUDENTS STRUGGLE
+═══════════════════════════════════════════════════════ -->
+<section class="problem-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">The Problem</span>
+            <h2 class="section-title">Why Students Struggle</h2>
+            <p class="section-subtitle mx-auto">Most educational platforms give you content. <br>We give you a <strong style="color:var(--accent)">system</strong>.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="problem-card">
+                    <div class="problem-icon" style="background:rgba(239,68,68,0.15);">
+                        <i class="bi bi-diagram-3-fill" style="color:#f87171;"></i>
+                    </div>
+                    <h5>Information Overload</h5>
+                    <p>Hundreds of resources, no clear path. Students drown in content without direction.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="problem-card">
+                    <div class="problem-icon" style="background:rgba(249,115,22,0.15);">
+                        <i class="bi bi-calendar-x-fill" style="color:#fb923c;"></i>
+                    </div>
+                    <h5>Poor Study Planning</h5>
+                    <p>No structure, no consistency, no feedback. Hard work without strategy is wasted effort.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="problem-card">
+                    <div class="problem-icon" style="background:rgba(234,179,8,0.15);">
+                        <i class="bi bi-chat-left-x-fill" style="color:#facc15;"></i>
+                    </div>
+                    <h5>Zero Feedback Loop</h5>
+                    <p>No real-time insight into what's working. Learning without feedback is learning in the dark.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="problem-card">
+                    <div class="problem-icon" style="background:rgba(139,92,246,0.15);">
+                        <i class="bi bi-gear-wide-connected" style="color:#a78bfa;"></i>
+                    </div>
+                    <h5>No Learning Strategy</h5>
+                    <p>Studying without engineering the outcome. Intelligence without methodology has a ceiling.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CHEM FRAMEWORK
+═══════════════════════════════════════════════════════ -->
+<section class="chem-section">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-5">
+                <span class="section-label">The Solution</span>
+                <h2 class="section-title">How <span class="gradient-text">CHEM</span> Works</h2>
+                <p class="section-subtitle" style="max-width:480px;">
+                    CHEM — <strong>Cybernetics &amp; Human Engineering Methods</strong> — is an original research framework developed by <strong>Parashmani Datta</strong> (2026). It applies the science of feedback-regulated systems to human learning, creating an intelligent, self-correcting educational approach.
+                </p>
+                <div class="mt-4 d-flex flex-column gap-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill" style="color:var(--teal-light);"></i>
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Feedback-driven learning loops that adapt to the learner</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill" style="color:var(--teal-light);"></i>
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Cognitive-load optimised study sequences</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill" style="color:var(--teal-light);"></i>
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Measurable, engineered learning outcomes</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill" style="color:var(--teal-light);"></i>
+                        <span style="color:var(--text-muted);font-size:0.92rem;">Human intelligence treated as an engineerable system</span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ url_for('research.index') }}" class="btn btn-primary-cta">
+                        <i class="bi bi-book me-2"></i>Explore CHEM Research
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="chem-pillar c">
+                            <div class="chem-pillar-letter">C</div>
+                            <h4>Cybernetics</h4>
+                            <p>The science of communication and automatic control in both biological and mechanical systems — applied directly to how humans learn and self-regulate.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="chem-pillar h">
+                            <div class="chem-pillar-letter">H</div>
+                            <h4>Human Engineering</h4>
+                            <p>Designing the study environment, sequence, and pacing around how the human brain actually acquires, stores, and retrieves knowledge.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="chem-pillar e">
+                            <div class="chem-pillar-letter">E</div>
+                            <h4>Engineering Methods</h4>
+                            <p>Structured, repeatable, and measurable methodologies that transform the unpredictable act of studying into a precision process.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="chem-pillar m">
+                            <div class="chem-pillar-letter">M</div>
+                            <h4>Methods Research</h4>
+                            <p>Original research by Parashmani Datta (2026) integrating cybernetic theory with educational psychology to produce the CHEM framework.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CHOOSE YOUR GOAL
+═══════════════════════════════════════════════════════ -->
+<section class="goals-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Your Journey</span>
+            <h2 class="section-title">Choose Your Goal</h2>
+            <p class="section-subtitle mx-auto">Every learner is different. ChemYukti builds a personalised learning path powered by CHEM.</p>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{{ url_for('main.learning_blueprint') }}" class="goal-card">
+                    <span class="goal-emoji">📚</span>
+                    <h5>Board Exams</h5>
+                    <p>Class 10 &amp; 12</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{{ url_for('main.learning_blueprint') }}" class="goal-card">
+                    <span class="goal-emoji">🎯</span>
+                    <h5>Competitive</h5>
+                    <p>JEE · NEET · CUET</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{{ url_for('main.learning_blueprint') }}" class="goal-card">
+                    <span class="goal-emoji">🏛</span>
+                    <h5>Government</h5>
+                    <p>UPSC · SSC · Defence</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{{ url_for('main.learning_blueprint') }}" class="goal-card">
+                    <span class="goal-emoji">🤖</span>
+                    <h5>AI &amp; Data</h5>
+                    <p>Tech &amp; Computation</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{{ url_for('solutions.index') }}" class="goal-card">
+                    <span class="goal-emoji">🏫</span>
+                    <h5>Schools</h5>
+                    <p>Institutions &amp; Coaching</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{{ url_for('main.learning_blueprint') }}" class="goal-card">
+                    <span class="goal-emoji">🔬</span>
+                    <h5>Research</h5>
+                    <p>PG &amp; Academic</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CHEA + AI MENTOR
+═══════════════════════════════════════════════════════ -->
+<section class="chea-section">
+    <div class="container">
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-6">
+                <div class="chea-badge h-100">
+                    <span class="section-label" style="color:rgba(255,255,255,0.7);">Flagship Program</span>
+                    <h2 class="section-title" style="color:#fff;font-size:clamp(1.75rem,3vw,2.5rem);">CHEA</h2>
+                    <p style="color:rgba(255,255,255,0.85);font-size:1.05rem;font-weight:500;margin-bottom:0.5rem;">
+                        Applied Cybernetics &amp; Human Intelligence
+                    </p>
+                    <p style="color:rgba(255,255,255,0.65);font-size:0.92rem;line-height:1.7;margin-bottom:1.5rem;">
+                        CHEA is ChemYukti's premier learning program — a structured, research-backed curriculum built on the CHEM framework. It develops advanced cognitive capabilities, systems thinking, and performance intelligence in learners.
+                    </p>
+                    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;">
+                        <li style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><i class="bi bi-arrow-right-circle-fill me-2" style="color:var(--accent);"></i>Admission via CHET (Cybernetics &amp; Human Intelligence Test)</li>
+                        <li style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><i class="bi bi-arrow-right-circle-fill me-2" style="color:var(--accent);"></i>Research-informed curriculum updated continuously</li>
+                        <li style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><i class="bi bi-arrow-right-circle-fill me-2" style="color:var(--accent);"></i>Dedicated human mentor assigned to each learner</li>
+                        <li style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><i class="bi bi-arrow-right-circle-fill me-2" style="color:var(--accent);"></i>Measurable learning outcomes guaranteed</li>
+                    </ul>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ url_for('main.chea') }}" class="btn btn-accent-cta">
+                            <i class="bi bi-mortarboard me-2"></i>Apply Through CHET
+                        </a>
+                        <a href="{{ url_for('main.chet') }}" class="btn btn-glass-cta" style="border-color:rgba(255,255,255,0.25);">
+                            Learn About CHET
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex flex-column gap-4">
+                <div class="glass-card p-4 flex-grow-1">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🤖</div>
+                        <div>
+                            <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin:0;">AI Mentor</h5>
+                            <span style="color:var(--teal-light);font-size:0.82rem;font-weight:600;">24/7 Intelligent Guidance</span>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65;margin-bottom:1.25rem;">
+                        Study planning, revision guidance, doubt assistance, exam preparation &amp; learning recommendations — all powered by AI, calibrated by CHEM.
+                    </p>
+                    <a href="{{ url_for('mentors.index') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-robot me-2"></i>Start with AI Mentor
+                    </a>
+                </div>
+                <div class="glass-card p-4 flex-grow-1">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#0f4c81,#0d9488);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">👨‍🏫</div>
+                        <div>
+                            <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin:0;">Human Mentors</h5>
+                            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;">Expert-Led 1:1 Sessions</span>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.65;margin-bottom:1.25rem;">
+                        Domain experts in AI &amp; Computational Thinking, Data Science, Mathematics, Chemistry and more. Book a session → Mentor contacts you.
+                    </p>
+                    <a href="{{ url_for('mentors.index') }}" class="btn btn-glass-cta w-100">
+                        <i class="bi bi-person-hearts me-2"></i>Meet the Mentors
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     ASSESSMENT PLATFORMS
+═══════════════════════════════════════════════════════ -->
+<section class="assessment-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Assessment Ecosystem</span>
+            <h2 class="section-title">Practice &amp; Assessment Platforms</h2>
+            <p class="section-subtitle mx-auto">ChemYukti's learning ecosystem connects to specialised assessment platforms for comprehensive performance tracking.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5">
+                <a href="https://pratipariksha.in" target="_blank" class="platform-card">
+                    <div class="platform-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(167,139,250,0.2));border:1px solid rgba(124,58,237,0.3);">
+                        <span style="font-size:1.75rem;">🎓</span>
+                    </div>
+                    <h4 style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff;margin-bottom:0.5rem;">Pratipariksha Student</h4>
+                    <p style="color:var(--teal-light);font-size:0.85rem;font-weight:600;margin-bottom:0.75rem;">pratipariksha.in</p>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.6;margin-bottom:1.5rem;">
+                        Daily practice tests, mock exams, adaptive assessments and detailed performance analytics for students from Class 1 to Post-Graduate.
+                    </p>
+                    <span class="btn btn-primary-cta px-4">
+                        <i class="bi bi-arrow-up-right me-1"></i>Go to Student Portal
+                    </span>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <a href="https://pratipariksha.org" target="_blank" class="platform-card">
+                    <div class="platform-icon" style="background:linear-gradient(135deg,rgba(8,145,178,0.2),rgba(34,211,238,0.2));border:1px solid rgba(8,145,178,0.3);">
+                        <span style="font-size:1.75rem;">🏫</span>
+                    </div>
+                    <h4 style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff;margin-bottom:0.5rem;">Pratipariksha Institution</h4>
+                    <p style="color:var(--accent);font-size:0.85rem;font-weight:600;margin-bottom:0.75rem;">pratipariksha.org</p>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.6;margin-bottom:1.5rem;">
+                        Institution-grade testing infrastructure for schools, coaching centres, and organisations. Bulk assessments, analytics dashboards, and private portals.
+                    </p>
+                    <span class="btn btn-glass-cta px-4">
+                        <i class="bi bi-arrow-up-right me-1"></i>Go to Institution Portal
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CHEM RESEARCH HIGHLIGHTS
+═══════════════════════════════════════════════════════ -->
+<section class="research-section">
+    <div class="container">
+        <div class="row align-items-center gy-5 mb-5">
+            <div class="col-lg-6">
+                <span class="section-label">Original Research</span>
+                <h2 class="section-title">
+                    CHEM Research by<br><span class="gradient-text-teal">Parashmani Datta</span>
+                </h2>
+                <p class="section-subtitle">
+                    The CHEM framework is grounded in peer-reviewed research on cybernetics, cognitive science, and educational technology. Explore the original work that powers ChemYukti.
+                </p>
+                <div class="mt-4 d-flex gap-3 flex-wrap">
+                    <a href="{{ url_for('research.index') }}" class="btn btn-primary-cta">
+                        <i class="bi bi-journal-richtext me-2"></i>Read Research
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=emDJo-UAAAAJ&hl=en"
+                       target="_blank" class="btn btn-glass-cta">
+                        <i class="bi bi-google me-2"></i>Google Scholar
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="research-highlight-card">
+                            <i class="bi bi-arrow-repeat fs-2 mb-2" style="color:var(--teal-light);"></i>
+                            <h6 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Feedback Loops in Learning</h6>
+                            <p style="color:var(--text-muted);font-size:0.83rem;line-height:1.6;margin:0;">How cybernetic feedback mechanisms reduce cognitive load and increase long-term retention.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="research-highlight-card">
+                            <i class="bi bi-cpu fs-2 mb-2" style="color:var(--primary-light);"></i>
+                            <h6 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Human Intelligence Engineering</h6>
+                            <p style="color:var(--text-muted);font-size:0.83rem;line-height:1.6;margin:0;">Enhancing neural plasticity and focused attention through structured, adaptive learning routines.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="research-highlight-card">
+                            <i class="bi bi-graph-up-arrow fs-2 mb-2" style="color:var(--accent);"></i>
+                            <h6 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Performance Intelligence</h6>
+                            <p style="color:var(--text-muted);font-size:0.83rem;line-height:1.6;margin:0;">Moving from effort-based to outcome-based learning — engineering academic performance like a system.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="research-highlight-card">
+                            <i class="bi bi-diagram-2 fs-2 mb-2" style="color:#a78bfa;"></i>
+                            <h6 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Adaptive Learning Systems</h6>
+                            <p style="color:var(--text-muted);font-size:0.83rem;line-height:1.6;margin:0;">Building self-correcting educational environments using the CHEM cybernetic model.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TOOLS
+═══════════════════════════════════════════════════════ -->
+<section class="tools-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Learning Tools</span>
+            <h2 class="section-title">Offline Learning Products</h2>
+            <p class="section-subtitle mx-auto">Precision tools built on CHEM principles to extend learning beyond screens.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="tool-card">
+                    <span class="tool-icon">🤖</span>
+                    <h5>Study Bot</h5>
+                    <p>An offline AI-powered study companion. Get instant topic summaries, doubt resolution and revision prompts — no internet required.</p>
+                    <a href="{{ url_for('main.tools') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-cart me-2"></i>Get Study Bot
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tool-card">
+                    <span class="tool-icon">🎙️</span>
+                    <h5>SpeechNova</h5>
+                    <p>Android app that translates, tutors, and assists learning through voice. A personal AI tutor in your pocket — available offline.</p>
+                    <a href="{{ url_for('main.tools') }}" class="btn btn-glass-cta w-100">
+                        <i class="bi bi-android2 me-2"></i>Download SpeechNova
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tool-card">
+                    <span class="tool-icon">📝</span>
+                    <h5>Question Paper Generator</h5>
+                    <p>Institution-focused tool for generating custom question papers. Align with syllabus, difficulty, and exam patterns automatically.</p>
+                    <a href="{{ url_for('main.tools') }}" class="btn btn-glass-cta w-100">
+                        <i class="bi bi-file-earmark-text me-2"></i>Generate Papers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SOLUTIONS
+═══════════════════════════════════════════════════════ -->
+<section class="solutions-section" style="background:linear-gradient(135deg,#070d18,#0b1120);border-top:1px solid var(--border-glass);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">For Organisations</span>
+            <h2 class="section-title">Educational Solutions</h2>
+            <p class="section-subtitle mx-auto">Complete technology and learning solutions for schools, institutions, and organisations.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="solution-card">
+                    <span class="solution-icon">🌐</span>
+                    <h5>Educational Websites</h5>
+                    <p>Custom-built educational portals and websites for schools, coaching centres, and institutions.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="solution-card">
+                    <span class="solution-icon">📱</span>
+                    <h5>Android App Development</h5>
+                    <p>Purpose-built Android learning apps for institutions, with offline support and analytics.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="solution-card">
+                    <span class="solution-icon">🏘️</span>
+                    <h5>Private Learning Communities</h5>
+                    <p>Gated, branded communities for students, alumni, and faculty with forums, resources, and mentoring.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="solution-card">
+                    <span class="solution-icon">📊</span>
+                    <h5>School Assessment Integration</h5>
+                    <p>Integrate Pratipariksha's assessment infrastructure directly into your institution's workflow.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ url_for('solutions.index') }}" class="btn btn-primary-cta btn-lg px-5">
+                <i class="bi bi-buildings me-2"></i>Explore All Solutions
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FREE LEARNING BLUEPRINT CTA
+═══════════════════════════════════════════════════════ -->
+<section class="blueprint-section">
+    <div class="container">
+        <div class="blueprint-card">
+            <span class="section-label">Free Assessment</span>
+            <h2 class="section-title" style="font-size:clamp(2rem,4vw,3rem);">
+                Get Your Free <span class="gradient-text">Learning Blueprint</span>
+            </h2>
+            <p style="color:var(--text-muted);font-size:1.05rem;max-width:580px;margin:0 auto 2rem;line-height:1.7;">
+                Tell us your class, board, exam goal, and subject interests. ChemYukti's CHEM engine generates a personalised learning path — your Assessment, Mentor, Resource, and Program — all in one place.
+            </p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="{{ url_for('main.learning_blueprint') }}" class="btn btn-accent-cta btn-lg px-5">
+                    <i class="bi bi-lightning-fill me-2"></i>Start Free Assessment
+                </a>
+                <a href="{{ url_for('main.chea') }}" class="btn btn-glass-cta btn-lg px-4">
+                    <i class="bi bi-mortarboard me-2"></i>Explore CHEA Program
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════════ -->
+<section class="testimonials-section" style="background:#070d18;border-top:1px solid var(--border-glass);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Community Voices</span>
+            <h2 class="section-title">What Learners Say</h2>
+        </div>
+        {% if testimonials %}
+        <div class="row g-4">
+            {% for t in testimonials %}
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"{{ t.content }}"</p>
+                    <div class="testimonial-author">{{ t.name }}</div>
+                    <div class="testimonial-role">{{ t.role or 'ChemYukti Learner' }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"ChemYukti's CHEM approach completely changed how I prepare for exams. It's not just study material — it's a whole learning system. The feedback loops actually work!"</p>
+                    <div class="testimonial-author">Ananya S.</div>
+                    <div class="testimonial-role">Class 12 · JEE Aspirant</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The learning blueprint assessment was eye-opening. I had never thought about studying as an engineered system before. My performance improved dramatically within weeks."</p>
+                    <div class="testimonial-author">Rohan M.</div>
+                    <div class="testimonial-role">UPSC Aspirant · Delhi</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"As an institution, we integrated Pratipariksha with ChemYukti's solutions. The results in student performance and teacher efficiency have been outstanding."</p>
+                    <div class="testimonial-author">Principal D. Sharma</div>
+                    <div class="testimonial-role">Senior Secondary School · Assam</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAYMENT SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="payment-section">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-7">
+                <span class="section-label">Support ChemYukti</span>
+                <h2 class="section-title" style="font-size:clamp(1.75rem,3vw,2.5rem);">
+                    Enrol, Donate or<br><span class="gradient-text">Purchase Services</span>
+                </h2>
+                <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7;">
+                    Support ChemYukti's mission of making high-quality, research-informed education accessible. Pay securely via Razorpay for CHEA admissions, mentor sessions, publications, tools, or direct donations.
+                </p>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="glass-card p-4">
+                    <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:1rem;">
+                        <i class="bi bi-shield-check-fill me-2" style="color:var(--teal-light);"></i>
+                        Secure payment via Razorpay
+                    </p>
+                    <form>
+                        <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                data-payment_button_id="pl_T0HvihFesqb3JW" async>
+                        </script>
+                    </form>
+                    <p style="color:var(--text-muted);font-size:0.78rem;margin-top:1rem;">
+                        UPI · Cards · Net Banking · Wallets supported
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════════ -->
+<section class="faq-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Common Questions</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion accordion-chemyukti" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                What is ChemYukti?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                ChemYukti is an Educational Technology, Research &amp; Learning Platform powered by <strong>CHEM — Cybernetics &amp; Human Engineering Methods</strong>, an original research framework developed by <strong>Parashmani Datta</strong> in 2026. It provides learning intelligence, mentorship, research publications, CHEA program admissions, and educational solutions for students and institutions across India.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                What is CHEM — Cybernetics &amp; Human Engineering Methods?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                CHEM is an original research framework by Parashmani Datta that applies <strong>cybernetics</strong> — the science of feedback-regulated systems — to human learning. It treats the learning process as an engineerable system with measurable inputs, feedback loops, and predictable outcomes. CHEM powers all of ChemYukti's programs, tools, and research.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                What is CHEA and how do I apply?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                CHEA (Applied Cybernetics &amp; Human Intelligence) is ChemYukti's flagship learning program. Admission is through <strong>CHET</strong> — the Cybernetics &amp; Human Intelligence Test. CHET evaluates your learning aptitude and readiness. Visit the CHEA page to explore the curriculum and apply.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                How is ChemYukti different from other coaching platforms?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Most platforms sell courses, PDFs, or test series. ChemYukti sells <strong>Learning Intelligence</strong>. We don't just give you content — we engineer your learning process using the CHEM framework. Our focus is on feedback loops, cognitive optimisation, and measurable outcomes, not just information delivery.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                What is Pratipariksha and how does it relate to ChemYukti?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Pratipariksha is ChemYukti's sister assessment platform. <strong>Pratipariksha.in</strong> serves students with practice and mock tests, while <strong>Pratipariksha.org</strong> serves schools and institutions with bulk assessments. Together they form the ChemYukti Ecosystem — ChemYukti for learning, Pratipariksha for assessment.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                How do I book a Human Mentor session?
+                            </button>
+                        </h2>
+                        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Visit the Mentors page, select your subject, and complete the payment. Once payment is confirmed, a booking is created and your assigned mentor will contact you directly to schedule the session. Subjects include AI &amp; Computational Thinking, Data Science, Mathematics, Chemistry, and more.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CONTACT CTA
+═══════════════════════════════════════════════════════ -->
+<section style="padding:5rem 0;border-top:1px solid var(--border-glass);">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-8">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title" style="font-size:clamp(1.75rem,3vw,2.5rem);">Ready to Engineer Your Learning?</h2>
+                <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.7;max-width:540px;">
+                    Whether you're a student, parent, school, or organisation — ChemYukti has a solution powered by CHEM. Let's talk.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end d-flex gap-3 flex-wrap justify-content-lg-end">
+                <a href="{{ url_for('main.contact') }}" class="btn btn-accent-cta btn-lg px-4">
+                    <i class="bi bi-envelope me-2"></i>Contact Us
+                </a>
+                <a href="https://wa.me/919062727662" target="_blank" class="btn btn-glass-cta btn-lg px-4">
+                    <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

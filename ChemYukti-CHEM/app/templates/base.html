@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ChemYukti{% endblock %} | ChemYukti — Educational Technology, Research & Learning Platform</title>
+
+    <!-- SEO Meta -->
+    <meta name="description" content="{% block meta_description %}ChemYukti is an Educational Technology, Research & Learning Platform powered by CHEM — Cybernetics & Human Engineering Methods, by Parashmani Datta (2026). Research-Informed. Learner-Focused. Outcome-Oriented.{% endblock %}">
+    <meta name="author" content="Parashmani Datta">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ChemYukti | Educational Technology, Research & Learning Platform">
+    <meta property="og:description" content="Powered by CHEM — Cybernetics & Human Engineering Methods by Parashmani Datta. Research-Informed. Learner-Focused. Outcome-Oriented.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chemyukti.com">
+    <meta property="og:image" content="{{ url_for('static', filename='img/chemyukti-logo.png') }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ChemYukti | CHEM Learning Platform">
+    <meta name="twitter:description" content="Powered by CHEM — Cybernetics & Human Engineering Methods by Parashmani Datta.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary:       #0f4c81;   /* deep navy */
+            --primary-light: #1a6fba;
+            --accent:        #f7c948;   /* golden */
+            --accent-dark:   #e6b520;
+            --teal:          #0d9488;
+            --teal-light:    #14b8a6;
+            --dark:          #0b1120;
+            --surface:       #111827;
+            --card-bg:       rgba(255,255,255,0.04);
+            --glass:         rgba(255,255,255,0.07);
+            --border-glass:  rgba(255,255,255,0.12);
+            --text-main:     #f1f5f9;
+            --text-muted:    #94a3b8;
+            --radius-lg:     1.25rem;
+            --radius-xl:     2rem;
+            --shadow-glow:   0 0 40px rgba(15,76,129,0.35);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .brand-text { font-family: 'Outfit', sans-serif; }
+
+        /* ── NAVBAR ─────────────────────────────────────────── */
+        .navbar-chemyukti {
+            background: rgba(11,17,32,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            text-decoration: none;
+        }
+
+        .navbar-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .navbar-logo-fallback {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--teal));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.45rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link-custom {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            font-size: 0.92rem;
+            padding: 0.45rem 0.85rem !important;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link-custom:hover {
+            color: var(--text-main) !important;
+            background: var(--glass);
+        }
+
+        .btn-nav-login {
+            background: transparent;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            border-radius: 8px;
+            padding: 0.4rem 1rem;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+        }
+
+        .btn-nav-login:hover {
+            background: var(--glass);
+            border-color: var(--primary-light);
+        }
+
+        .btn-nav-register {
+            background: linear-gradient(135deg, var(--primary), var(--teal));
+            border: none;
+            color: #fff !important;
+            border-radius: 8px;
+            padding: 0.4rem 1.1rem;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+        }
+
+        .btn-nav-register:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(15,76,129,0.4);
+        }
+
+        .navbar-toggler {
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            padding: 0.35rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* ── ALERTS ─────────────────────────────────────────── */
+        .alert-flash {
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: var(--radius-lg);
+            margin: 1rem 0;
+        }
+
+        /* ── FOOTER ─────────────────────────────────────────── */
+        .footer-main {
+            background: #070d18;
+            border-top: 1px solid var(--border-glass);
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            border-radius: 7px;
+        }
+
+        .footer-brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-tagline {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .footer-section-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--accent); }
+
+        .ecosystem-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .ecosystem-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .ecosystem-badge:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--primary-light);
+        }
+
+        .ecosystem-badge-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .ecosystem-badge-text { font-size: 0.82rem; color: var(--text-main); }
+        .ecosystem-badge-sub  { font-size: 0.73rem; color: var(--text-muted); }
+
+        .footer-divider {
+            border-color: var(--border-glass);
+            margin: 2rem 0 1.5rem;
+        }
+
+        .footer-bottom {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        /* ── SHARED UTILITIES ───────────────────────────────── */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, #fff 60%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-teal {
+            background: linear-gradient(135deg, var(--teal-light) 0%, #fff 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.25s;
+            box-shadow: 0 4px 20px rgba(15,76,129,0.4);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-primary-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(15,76,129,0.55);
+            color: #fff;
+        }
+
+        .btn-accent-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border: none;
+            color: #0b1120;
+            font-weight: 700;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.25s;
+            box-shadow: 0 4px 20px rgba(247,201,72,0.35);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-accent-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(247,201,72,0.5);
+            color: #0b1120;
+        }
+
+        .btn-glass-cta {
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            font-weight: 600;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.25s;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-glass-cta:hover {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+    </style>
+    {% block extra_styles %}<style></style>{% endblock %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <!-- ── NAVBAR ─────────────────────────────────────────── -->
+    <nav class="navbar-chemyukti navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand-wrap" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='img/chemyukti-logo.png') }}"
+                     alt="ChemYukti Logo" class="navbar-logo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="navbar-logo-fallback" style="display:none;">CY</div>
+                <span class="brand-name">ChemYukti</span>
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navMain"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMain">
+                <ul class="navbar-nav mx-auto gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ url_for('main.courses') }}">
+                            <i class="bi bi-mortarboard me-1"></i>Learn
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ url_for('mentors.index') }}">
+                            <i class="bi bi-person-hearts me-1"></i>Mentors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ url_for('research.index') }}">
+                            <i class="bi bi-journal-richtext me-1"></i>Research
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ url_for('solutions.index') }}">
+                            <i class="bi bi-buildings me-1"></i>Solutions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ url_for('community.index') }}">
+                            <i class="bi bi-people me-1"></i>Community
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="{{ url_for('main.about') }}">
+                            <i class="bi bi-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav gap-2 align-items-center">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle d-flex align-items-center gap-1"
+                               href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> {{ current_user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
+                                style="background:#111827;border:1px solid var(--border-glass);border-radius:12px;">
+                                {% if current_user.role == 'admin' %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('admin.dashboard') }}">
+                                        <i class="bi bi-speedometer2 me-2"></i>Admin Dashboard
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" style="border-color:var(--border-glass)"></li>
+                                {% endif %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-nav-login btn-sm">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('auth.register') }}" class="btn btn-nav-register btn-sm">Get Started</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── FLASH MESSAGES ─────────────────────────────────── -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="container mt-3">
+            {% for category, message in messages %}
+            <div class="alert alert-flash alert-dismissible fade show" role="alert">
+                <i class="bi bi-info-circle-fill me-2"></i>{{ message }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- ── MAIN CONTENT ───────────────────────────────────── -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ── FOOTER ─────────────────────────────────────────── -->
+    <footer class="footer-main">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Brand Column -->
+                <div class="col-lg-4">
+                    <div class="footer-logo-area">
+                        <img src="{{ url_for('static', filename='img/chemyukti-logo.png') }}"
+                             alt="ChemYukti" class="footer-logo"
+                             onerror="this.style.display='none'">
+                        <span class="footer-brand">ChemYukti</span>
+                    </div>
+                    <p class="footer-tagline">
+                        Educational Technology, Research & Learning Platform<br>
+                        Powered by <strong>CHEM</strong> — Cybernetics &amp; Human Engineering Methods<br>
+                        <em>by Parashmani Datta, 2026</em>
+                    </p>
+                    <p class="footer-tagline" style="color:#94a3b8;font-style:italic;font-size:0.82rem;">
+                        Research-Informed. Learner-Focused. Outcome-Oriented.
+                    </p>
+                    <!-- Razorpay Payment Button -->
+                    <div class="mt-3">
+                        <form>
+                            <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                    data-payment_button_id="pl_T0HvihFesqb3JW" async>
+                            </script>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="footer-section-title">Platform</h6>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('main.chea') }}">CHEA Program</a></li>
+                        <li><a href="{{ url_for('main.loop90') }}">Loop90</a></li>
+                        <li><a href="{{ url_for('mentors.index') }}">Mentors</a></li>
+                        <li><a href="{{ url_for('main.tools') }}">Tools</a></li>
+                        <li><a href="{{ url_for('research.publications') }}">Publications</a></li>
+                    </ul>
+                </div>
+
+                <!-- Research -->
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="footer-section-title">Research</h6>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('research.index') }}">CHEM Framework</a></li>
+                        <li><a href="https://scholar.google.com/citations?user=emDJo-UAAAAJ&hl=en" target="_blank">Google Scholar</a></li>
+                        <li><a href="{{ url_for('solutions.index') }}">Solutions</a></li>
+                        <li><a href="{{ url_for('community.index') }}">Community</a></li>
+                        <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Ecosystem -->
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="footer-section-title">ChemYukti Ecosystem</h6>
+                    <div class="ecosystem-badges">
+                        <a href="{{ url_for('main.index') }}" class="ecosystem-badge">
+                            <div class="ecosystem-badge-icon" style="background:linear-gradient(135deg,#0f4c81,#0d9488);">CY</div>
+                            <div>
+                                <div class="ecosystem-badge-text fw-semibold">ChemYukti</div>
+                                <div class="ecosystem-badge-sub">Learning & Research Platform</div>
+                            </div>
+                        </a>
+                        <a href="https://pratipariksha.in" target="_blank" class="ecosystem-badge">
+                            <div class="ecosystem-badge-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">PP</div>
+                            <div>
+                                <div class="ecosystem-badge-text fw-semibold">Pratipariksha Student</div>
+                                <div class="ecosystem-badge-sub">Practice & Mock Tests</div>
+                            </div>
+                        </a>
+                        <a href="https://pratipariksha.org" target="_blank" class="ecosystem-badge">
+                            <div class="ecosystem-badge-icon" style="background:linear-gradient(135deg,#0891b2,#22d3ee);">PI</div>
+                            <div>
+                                <div class="ecosystem-badge-text fw-semibold">Pratipariksha Institution</div>
+                                <div class="ecosystem-badge-sub">School & Coaching Portals</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <span>&copy; 2026 ChemYukti. All rights reserved. Powered by CHEM — Cybernetics &amp; Human Engineering Methods by Parashmani Datta.</span>
+                <span class="d-flex gap-3">
+                    <a href="mailto:chemyukti@gmail.com" style="color:var(--text-muted)">chemyukti@gmail.com</a>
+                    <a href="https://wa.me/919062727662" target="_blank" style="color:var(--text-muted)"><i class="bi bi-whatsapp"></i> +91 90627 27662</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

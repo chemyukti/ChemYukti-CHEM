@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+{% block title %}Mentors{% endblock %}
+{% block meta_description %}Connect with AI and Human Mentors at ChemYukti. Expert guidance in AI & Computational Thinking, Data Science, Mathematics, Chemistry and more — powered by CHEM methodology by Parashmani Datta.{% endblock %}
+
+{% block extra_styles %}
+.mentors-hero {
+    background: linear-gradient(135deg, rgba(15,76,129,0.3) 0%, rgba(13,148,136,0.2) 100%),
+                var(--dark);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 5rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+.mentors-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+.ai-mentor-card {
+    background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(15,76,129,0.15));
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+}
+.feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    margin: 0.25rem;
+}
+.human-mentor-card {
+    background: var(--glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+}
+.human-mentor-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--teal-light);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.mentor-subject-icon {
+    width: 68px; height: 68px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.25rem;
+}
+.subject-tag {
+    display: inline-block;
+    background: rgba(13,148,136,0.15);
+    border: 1px solid rgba(13,148,136,0.3);
+    color: var(--teal-light);
+    border-radius: 50px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+.workflow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-glass);
+}
+.workflow-step:last-child { border-bottom: none; }
+.step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800; font-size: 0.85rem; color: #fff;
+    flex-shrink: 0;
+}
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="mentors-hero">
+    <div class="container position-relative" style="z-index:1;">
+        <div class="text-center">
+            <span class="section-label">Mentorship</span>
+            <h1 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);">
+                Guidance <span class="gradient-text">Engineered</span> for You
+            </h1>
+            <p class="section-subtitle mx-auto">
+                From 24/7 AI-driven planning to expert human mentors — ChemYukti's mentorship system is built on CHEM principles for measurable learning outcomes.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+
+    <!-- AI MENTOR -->
+    <section class="mb-5">
+        <div class="ai-mentor-card">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-7">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🤖</div>
+                        <div>
+                            <h2 style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff;margin:0;font-size:1.75rem;">AI Mentor</h2>
+                            <span style="color:#a78bfa;font-size:0.85rem;font-weight:600;">24/7 · Intelligent · CHEM-Powered</span>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-muted);font-size:0.97rem;line-height:1.75;margin-bottom:1.5rem;">
+                        ChemYukti's AI Mentor is a subscription-based intelligent study companion calibrated by the CHEM framework. It adapts to your learning patterns, delivers feedback-optimised study plans, and provides on-demand guidance for any subject or exam.
+                    </p>
+                    <div class="mb-4">
+                        <div class="feature-pill"><i class="bi bi-calendar-check" style="color:var(--teal-light);"></i> Personalised Study Planning</div>
+                        <div class="feature-pill"><i class="bi bi-arrow-repeat" style="color:var(--accent);"></i> Adaptive Revision Guidance</div>
+                        <div class="feature-pill"><i class="bi bi-clipboard-data" style="color:#a78bfa;"></i> Exam Preparation Roadmaps</div>
+                        <div class="feature-pill"><i class="bi bi-lightning-charge" style="color:var(--teal-light);"></i> Instant Doubt Assistance</div>
+                        <div class="feature-pill"><i class="bi bi-graph-up" style="color:var(--accent);"></i> Performance Recommendations</div>
+                        <div class="feature-pill"><i class="bi bi-moon-stars" style="color:#a78bfa;"></i> Available Round the Clock</div>
+                    </div>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <form>
+                            <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                                    data-payment_button_id="pl_T0HvihFesqb3JW" async></script>
+                        </form>
+                        <a href="{{ url_for('main.contact') }}" class="btn btn-glass-cta">
+                            <i class="bi bi-envelope me-2"></i>Enquire First
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="glass-card p-4">
+                        <h6 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:1.25rem;">
+                            <i class="bi bi-gear me-2" style="color:var(--accent);"></i>How It Works
+                        </h6>
+                        <div class="workflow-step">
+                            <div class="step-num">01</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.92rem;">Subscribe & Onboard</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Complete payment and fill your learning profile — class, board, subjects, and goals.</div>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="step-num">02</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.92rem;">Get Your CHEM Blueprint</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">AI analyses your profile against CHEM parameters and generates your personalised learning plan.</div>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="step-num">03</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.92rem;">Learn, Track & Iterate</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Follow the plan, get daily check-ins, ask doubts anytime. The AI adapts as you progress.</div>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="step-num">04</div>
+                            <div>
+                                <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.92rem;">Achieve Engineered Outcomes</div>
+                                <div style="color:var(--text-muted);font-size:0.82rem;line-height:1.5;">Regular performance reviews and feedback loops ensure you hit your target — not just study harder.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HUMAN MENTORS -->
+    <section class="mt-5">
+        <div class="text-center mb-5">
+            <span class="section-label">Expert Humans</span>
+            <h2 class="section-title">Human Mentors</h2>
+            <p class="section-subtitle mx-auto">
+                Domain experts who combine deep subject knowledge with CHEM's learning engineering principles. <strong>Pay → Booking Created → Mentor Contacts You.</strong>
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for mentor in human_mentors %}
+            <div class="col-md-6 col-lg-3">
+                <div class="human-mentor-card">
+                    {% if mentor.image_url %}
+                    <img src="{{ mentor.image_url }}" alt="{{ mentor.name }}"
+                         style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 1rem;display:block;border:2px solid var(--border-glass);">
+                    {% else %}
+                    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--teal));display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;margin:0 auto 1rem;">
+                        {{ mentor.name[0] }}
+                    </div>
+                    {% endif %}
+                    <div class="subject-tag">{{ mentor.subject }}</div>
+                    <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">{{ mentor.name }}</h5>
+                    <p style="color:var(--text-muted);font-size:0.85rem;line-height:1.6;margin-bottom:1.25rem;">{{ mentor.bio }}</p>
+                    <form action="{{ url_for('mentors.book', mentor_id=mentor.id) }}" method="POST">
+                        <button type="submit" class="btn btn-primary-cta w-100">
+                            <i class="bi bi-calendar-plus me-2"></i>Book Session
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <!-- Default subject cards when no mentors in DB -->
+            <div class="col-md-6 col-lg-3">
+                <div class="human-mentor-card">
+                    <div class="mentor-subject-icon" style="background:linear-gradient(135deg,rgba(15,76,129,0.3),rgba(26,111,186,0.2));border:1px solid rgba(15,76,129,0.4);">🤖</div>
+                    <div class="subject-tag">AI & Computational Thinking</div>
+                    <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">AI & Comp. Thinking</h5>
+                    <p style="color:var(--text-muted);font-size:0.85rem;line-height:1.6;margin-bottom:1.25rem;">Master the language of the future — from algorithmic thinking to AI fundamentals and real-world applications.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-send me-2"></i>Request Mentor
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="human-mentor-card">
+                    <div class="mentor-subject-icon" style="background:linear-gradient(135deg,rgba(13,148,136,0.3),rgba(20,184,166,0.2));border:1px solid rgba(13,148,136,0.4);">📊</div>
+                    <div class="subject-tag">Data Science</div>
+                    <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Data Science</h5>
+                    <p style="color:var(--text-muted);font-size:0.85rem;line-height:1.6;margin-bottom:1.25rem;">Learn to engineer insights from data. Statistics, Python, ML, and data storytelling for real-world problems.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-send me-2"></i>Request Mentor
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="human-mentor-card">
+                    <div class="mentor-subject-icon" style="background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(167,139,250,0.2));border:1px solid rgba(124,58,237,0.4);">🔢</div>
+                    <div class="subject-tag">Mathematics</div>
+                    <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Mathematics</h5>
+                    <p style="color:var(--text-muted);font-size:0.85rem;line-height:1.6;margin-bottom:1.25rem;">Deep conceptual understanding of mathematical structures — from foundational algebra to calculus and beyond.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-send me-2"></i>Request Mentor
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="human-mentor-card">
+                    <div class="mentor-subject-icon" style="background:linear-gradient(135deg,rgba(247,201,72,0.2),rgba(230,181,32,0.15));border:1px solid rgba(247,201,72,0.3);">⚗️</div>
+                    <div class="subject-tag">Chemistry</div>
+                    <h5 style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;">Chemistry</h5>
+                    <p style="color:var(--text-muted);font-size:0.85rem;line-height:1.6;margin-bottom:1.25rem;">Molecular engineering and concepts — from Class 11–12 through competitive exams and undergraduate studies.</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-primary-cta w-100">
+                        <i class="bi bi-send me-2"></i>Request Mentor
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Coming Soon -->
+            <div class="col-12">
+                <div class="glass-card p-4 text-center" style="border-style:dashed;">
+                    <p style="color:var(--text-muted);font-size:0.95rem;margin:0;">
+                        <i class="bi bi-plus-circle me-2" style="color:var(--accent);"></i>
+                        <strong style="color:#fff;">More mentors coming soon</strong> — Physics, Biology, Economics, English, UPSC specialists & more.
+                        <a href="{{ url_for('main.contact') }}" style="color:var(--accent);"> Register interest →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Process -->
+        <div class="glass-card p-4 mt-5">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-4">
+                    <h4 style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff;margin-bottom:0.5rem;">How Booking Works</h4>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.7;">Simple, transparent, and fast. Your mentor reaches out to you — not the other way around.</p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row g-3 text-center">
+                        <div class="col-3">
+                            <div style="font-size:1.75rem;margin-bottom:0.5rem;">💳</div>
+                            <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;">Pay Securely</div>
+                            <div style="color:var(--text-muted);font-size:0.78rem;">via Razorpay</div>
+                        </div>
+                        <div class="col-3">
+                            <div style="font-size:1.75rem;margin-bottom:0.5rem;">📋</div>
+                            <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;">Booking Created</div>
+                            <div style="color:var(--text-muted);font-size:0.78rem;">Instantly confirmed</div>
+                        </div>
+                        <div class="col-3">
+                            <div style="font-size:1.75rem;margin-bottom:0.5rem;">📞</div>
+                            <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;">Mentor Contacts You</div>
+                            <div style="color:var(--text-muted);font-size:0.78rem;">Within 24 hours</div>
+                        </div>
+                        <div class="col-3">
+                            <div style="font-size:1.75rem;margin-bottom:0.5rem;">🎓</div>
+                            <div style="font-family:'Outfit',sans-serif;font-weight:700;color:#fff;font-size:0.85rem;">Start Learning</div>
+                            <div style="color:var(--text-muted);font-size:0.78rem;">Online sessions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

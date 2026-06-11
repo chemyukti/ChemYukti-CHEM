@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Community | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="bg-dark text-white py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="mb-0">Community Forum</h1>
+        <a href="{{ url_for('community.new_post') }}" class="btn btn-primary">Start Discussion</a>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-9">
+            {% for post in posts %}
+            <div class="card mb-3 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{ url_for('community.post', post_id=post.id) }}" class="text-decoration-none text-dark">{{ post.title }}</a></h5>
+                    <p class="card-text small text-muted">Posted by {{ post.author.username if post.author else 'Unknown' }} on {{ post.created_at.strftime('%b %d, %Y') }}</p>
+                    <p class="card-text">{{ post.content[:200] }}...</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-light text-dark border">{{ post.replies.count() }} Replies</span>
+                        <a href="{{ url_for('community.post', post_id=post.id) }}" class="btn btn-sm btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-chat-dots fs-1 text-muted"></i>
+                <h4 class="mt-3">No discussions yet.</h4>
+                <p>Be the first to start a conversation about learning engineering!</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5>Announcements</h5>
+                    <p class="small text-muted">New CHEA admission cycle starts next month.</p>
+                </div>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5>Referral Program</h5>
+                    <p class="small">Share CHEMYUKTI with friends and earn rewards.</p>
+                    <a href="{{ url_for('community.referrals') }}" class="btn btn-sm btn-outline-primary w-100">My Referrals</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

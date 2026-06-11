@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}CHEA | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row align-items-center mb-5">
+        <div class="col-md-7">
+            <h1 class="display-4 fw-bold">CHEA</h1>
+            <h3 class="text-primary mb-4">Applied Cybernetics & Human Intelligence</h3>
+            <p class="lead">The ultimate frontier in learning engineering. CHEA is not just a course; it's a structural transformation of how you process, retain, and apply information.</p>
+            <a href="{{ url_for('main.chet') }}" class="btn btn-primary btn-lg">Apply Through CHET</a>
+        </div>
+        <div class="col-md-5">
+            <div class="bg-light p-4 rounded border shadow-sm">
+                <h5>Admission Status</h5>
+                <p class="text-success fw-bold">Applications Open for 2026</p>
+                <p class="small">Admission is strictly through the Cybernetics & Human Intelligence Test (CHET).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5>Curriculum</h5>
+                    <p class="small text-muted">A blend of advanced cognitive science, systems engineering, and subject mastery.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5>Learning Outcomes</h5>
+                    <p class="small text-muted">Develop superior analytical skills, improved memory retention, and strategic problem-solving.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5>Research Foundation</h5>
+                    <p class="small text-muted">Every module is backed by findings from our ongoing CHEM research initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card bg-light border-0">
+        <div class="card-body p-5">
+            <h2 class="text-center mb-4">The Admission Process</h2>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="fs-1 fw-bold text-primary">01</div>
+                    <h6>Register</h6>
+                </div>
+                <div class="col-md-3">
+                    <div class="fs-1 fw-bold text-primary">02</div>
+                    <h6>Take CHET</h6>
+                </div>
+                <div class="col-md-3">
+                    <div class="fs-1 fw-bold text-primary">03</div>
+                    <h6>Interview</h6>
+                </div>
+                <div class="col-md-3">
+                    <div class="fs-1 fw-bold text-primary">04</div>
+                    <h6>Enrollment</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
