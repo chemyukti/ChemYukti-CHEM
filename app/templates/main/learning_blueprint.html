@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Free Learning Assessment | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow border-0">
+                <div class="card-body p-5">
+                    <h2 class="text-center fw-bold mb-4">Learning Blueprint Assessment</h2>
+                    <p class="text-center text-muted mb-5">Tell us about your learning goals, and we'll generate a research-informed strategy for you.</p>
+
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Current Class / Level</label>
+                                {{ form.student_class(class="form-control", placeholder="e.g. Class 12, Graduate") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Educational Board</label>
+                                {{ form.board(class="form-control", placeholder="e.g. CBSE, ICSE, University") }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Exam Type You are Preparing For</label>
+                            {{ form.exam_type(class="form-control", placeholder="e.g. JEE, Boards, UPSC") }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Main Learning Goal</label>
+                            {{ form.learning_goal(class="form-control", rows="3", placeholder="What do you want to achieve?") }}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Subject Interests / Weak Areas</label>
+                            {{ form.subject_interests(class="form-control", rows="3", placeholder="Which subjects need most attention?") }}
+                        </div>
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary btn-lg") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
