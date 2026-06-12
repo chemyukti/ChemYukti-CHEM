@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Mentors | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="bg-light py-5 border-bottom">
+    <div class="container text-center">
+        <h1 class="fw-bold">Guidance Engineered for You</h1>
+        <p class="lead text-muted">From AI-driven planning to IIT-graduate human mastery.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row align-items-center mb-5 pb-5 border-bottom">
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-4">AI Mentor Subscription</h2>
+            <p>Our flagship AI Mentor provides 24/7 intelligent assistance for study planning, doubt resolution, and revision guidance based on the CHEM framework.</p>
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-primary me-2"></i> Personalized Study Planning</li>
+                <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-primary me-2"></i> Automated Revision Cycles</li>
+                <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-primary me-2"></i> Cognitive Performance Tracking</li>
+            </ul>
+            <div class="card bg-white shadow-sm p-4 border-0 rounded-4">
+                <h4 class="mb-3">Subscribe Now</h4>
+                <div class="d-grid">
+                    <!-- Razorpay Payment Button Integration -->
+                    <form>
+                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_T0HvihFesqb3JW" async> </script>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-white rounded-4 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600" class="img-fluid rounded-4" alt="AI Mentor Visualization">
+            </div>
+        </div>
+    </div>
+
+    <h2 class="fw-bold mb-5 mt-4 text-center">Meet Our Human Mentors</h2>
+    <div class="row g-4">
+        {% for mentor in human_mentors %}
+        <div class="col-md-4">
+            <div class="card h-100 border-0 rounded-4 overflow-hidden">
+                <div style="height: 250px; overflow: hidden; background: #eee;">
+                    <img src="{{ mentor.image_url or 'https://images.unsplash.com/photo-1544717297-fa15739a5447?auto=format&fit=crop&q=80&w=300' }}" class="w-100 h-100 object-fit-cover" alt="{{ mentor.name }}">
+                </div>
+                <div class="card-body p-4 text-center">
+                    <h5 class="fw-bold mb-2">{{ mentor.name }}</h5>
+                    <div class="badge bg-primary-subtle text-primary mb-3">{{ mentor.subject }}</div>
+                    <p class="card-text small text-muted mb-4">{{ mentor.bio }}</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary rounded-pill" onclick="alert('Proceeding to session booking with {{ mentor.name }}...')">Book Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+        <p class="text-muted">More human mentors (Mathematics, Chemistry, Data Science) available soon.</p>
+    </div>
+</div>
+{% endblock %}

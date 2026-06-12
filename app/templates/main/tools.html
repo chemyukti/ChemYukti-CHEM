@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Tools & Products | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h1 class="fw-bold">Educational Solutions & Tools</h1>
+        <p class="lead text-muted">Engineering learning through specialized technology.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- SpeechNova -->
+        <div class="col-md-6">
+            <div class="card h-100 rounded-4 p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <img src="{{ url_for('static', filename='img/speechnova_logo.svg') }}" alt="SpeechNova" height="50" class="me-3">
+                    <h2 class="fw-bold mb-0">SpeechNova</h2>
+                </div>
+                <p>SpeechNova is an assistive learning tool designed for comprehensive testing and evaluation. It leverages algorithmic processing to provide deep insights into student performance.</p>
+                <ul class="mb-4">
+                    <li><i class="bi bi-check text-success me-2"></i> Real-time Testing Analytics</li>
+                    <li><i class="bi bi-check text-success me-2"></i> Automated Evaluation Loops</li>
+                    <li><i class="bi bi-check text-success me-2"></i> Assistive Learning Features</li>
+                </ul>
+                <div class="mt-auto">
+                    <button class="btn btn-outline-primary rounded-pill px-4">Learn More</button>
+                    <button class="btn btn-primary rounded-pill px-4 ms-2">Purchase</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Bot -->
+        <div class="col-md-6">
+            <div class="card h-100 rounded-4 p-4 border-primary border-opacity-25">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="bg-primary text-white rounded-circle p-3 me-3" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-robot fs-2"></i>
+                    </div>
+                    <h2 class="fw-bold mb-0">Study Bot</h2>
+                </div>
+                <p>An offline AI-powered study companion that helps students manage their learning schedules and stay focused on CHEM-engineered milestones.</p>
+                <ul class="mb-4">
+                    <li><i class="bi bi-check text-primary me-2"></i> Schedule Engineering</li>
+                    <li><i class="bi bi-check text-primary me-2"></i> Focus Optimization</li>
+                    <li><i class="bi bi-check text-primary me-2"></i> Offline Intelligence</li>
+                </ul>
+                <div class="mt-auto">
+                    <button class="btn btn-primary rounded-pill px-5">Get Study Bot</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Paper Generator -->
+        <div class="col-md-12 mt-4">
+            <div class="card rounded-4 p-5 bg-dark text-white text-center border-0 overflow-hidden position-relative">
+                <div class="position-relative z-1">
+                    <h2 class="fw-bold mb-3">Question Paper Generator</h2>
+                    <p class="lead mb-4 mx-auto" style="max-width: 700px;">The ultimate solution for schools and coaching institutes to generate high-quality assessments instantly based on specific learning outcomes.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('main.contact') }}" class="btn btn-warning btn-lg rounded-pill px-5">Request Demo</a>
+                        <a href="https://pratipariksha.org" class="btn btn-outline-light btn-lg rounded-pill px-5" target="_blank">Visit Pratipariksha Institution</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

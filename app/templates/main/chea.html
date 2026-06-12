@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}CHEA Program | CHEMYUKTI{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">CHEA</h1>
+        <p class="lead">Certificate Course in Applied Cybernetics & Human Engineering</p>
+        <div class="badge bg-warning text-dark px-3 py-2 fs-6">12-Month Professional Programme</div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h2 class="fw-bold mb-4">A Letter to Parents</h2>
+            <div class="bg-light p-4 rounded-4 italic mb-5">
+                "You have invested deeply in your child's education: school, tuition, extracurriculars, and more. Yet most of us quietly worry about one thing: is my child truly prepared for the unpredictable world ahead? CHEA exists precisely to close that gap."
+            </div>
+
+            <h3 class="fw-bold mb-3">Program Overview</h3>
+            <p>CHEA is not a replacement for school or college. It is a carefully designed add-on programme that runs alongside whatever your child is already studying. Based on the <strong>CHEM Framework</strong> (Cybernetics & Human Intelligence Methods), it adds the one layer that formal education rarely provides: the ability to think well, adapt fast, and act effectively.</p>
+
+            <div class="row g-4 mt-2">
+                <div class="col-6">
+                    <div class="p-3 border rounded-3 text-center">
+                        <h4 class="fw-bold text-primary">24</h4>
+                        <p class="small text-muted mb-0">Modules</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border rounded-3 text-center">
+                        <h4 class="fw-bold text-primary">12</h4>
+                        <p class="small text-muted mb-0">Months</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="fw-bold mt-5 mb-3">Course Structure</h3>
+            <ul class="list-group list-group-flush mb-5">
+                <li class="list-group-item"><i class="bi bi-gear-wide-connected text-primary me-2"></i> Applied Cybernetics Foundations</li>
+                <li class="list-group-item"><i class="bi bi-brain text-primary me-2"></i> Human Intelligence Engineering</li>
+                <li class="list-group-item"><i class="bi bi-diagram-2 text-primary me-2"></i> Systems Thinking & Mastery</li>
+                <li class="list-group-item"><i class="bi bi-lightning text-primary me-2"></i> Clear Thinking Under Pressure</li>
+            </ul>
+
+            <h3 class="fw-bold mb-3">Admission</h3>
+            <p>Admission is strictly through the <strong>CHET</strong> (Cybernetics & Human Intelligence Test). We look for curiosity and analytical potential rather than just prior knowledge.</p>
+            <a href="{{ url_for('main.chet') }}" class="btn btn-primary btn-lg rounded-pill px-5">Apply Through CHET</a>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 100px;">
+                <div class="card-body p-4 text-center">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" height="60" class="mb-4">
+                    <h5 class="fw-bold mb-3">Next Cohort</h5>
+                    <p class="text-success fw-bold fs-4">April 2026</p>
+                    <hr>
+                    <p class="small text-muted mb-4">2nd Cohort Admissions are now open for Class 7 to Postgraduate students.</p>
+                    <a href="https://forms.gle/j3o47yGLwh5wS5qo8" class="btn btn-warning w-100 rounded-pill mb-3" target="_blank">Admission Form</a>
+                    <a href="{{ url_for('research.publications') }}" class="btn btn-outline-dark w-100 rounded-pill">Download Handbook</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

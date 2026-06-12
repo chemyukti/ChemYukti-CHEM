@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Explore research-informed learning systems powered by CHEM. Access mentorship, educational programs, publications, learning tools, and academic solutions.{% endblock %}">
+    <link rel="canonical" href="{{ request.url }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+    <meta property="og:description" content="{{ self.meta_description() }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/logo.png', _external=True) }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.url }}">
+    <meta property="twitter:title" content="{{ self.og_title() }}">
+    <meta property="twitter:description" content="{{ self.meta_description() }}">
+    <meta property="twitter:image" content="{{ url_for('static', filename='img/logo.png', _external=True) }}">
+
+    <title>{% block title %}{% endblock %} | CHEMYUKTI</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CHEMYUKTI",
+      "url": "{{ url_for('main.index', _external=True) }}",
+      "logo": "{{ url_for('static', filename='img/logo.png', _external=True) }}",
+      "sameAs": [
+        "https://www.linkedin.com/company/chemyukti",
+        "https://twitter.com/chemyukti"
+      ]
+    }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #c51162;
+            --bg-light: #f5f5f5;
+        }
+        body { font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fff; color: #333; }
+        .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+        .navbar-brand img { height: 40px; }
+        .hero-section { background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: white; padding: 120px 0; position: relative; overflow: hidden; }
+        .hero-section::after { content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); transform: rotate(-15deg); }
+        .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
+        .btn-primary:hover { background-color: #283593; border-color: #283593; }
+        .btn-secondary { background-color: var(--secondary-color); border-color: var(--secondary-color); }
+        .footer-ecosystem { background: #121212; color: #ccc; padding: 60px 0 20px; }
+        .footer-ecosystem h5 { color: white; margin-bottom: 25px; }
+        .footer-ecosystem a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .footer-ecosystem a:hover { color: white; }
+        .card { border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .testimonial-carousel { background: #f9f9f9; padding: 80px 0; }
+        .journey-step { position: relative; padding: 30px; border-radius: 15px; background: white; margin-bottom: 30px; }
+        .journey-step::before { content: ''; position: absolute; left: -15px; top: 50%; width: 30px; height: 30px; background: var(--primary-color); border-radius: 50%; border: 5px solid white; display: none; }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="CHEMYUKTI Logo" class="me-2">
+                <span class="fw-bold">CHEMYUKTI</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.courses') }}">Learn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('mentors.index') }}">Mentors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('research.index') }}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('solutions.index') }}">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('community.index') }}">Community</a></li>
+                </ul>
+                <ul class="navbar-nav align-items-center">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                {{ current_user.username }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if current_user.role == 'admin' %}
+                                    <li><a class="dropdown-item" href="{{ url_for('admin.dashboard') }}">Admin Dashboard</a></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
+                        <li class="nav-item"><a class="btn btn-primary ms-2 rounded-pill px-4" href="{{ url_for('auth.register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="container mt-3">
+              {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show border-0 shadow-sm">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer-ecosystem">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" height="30" class="me-2 filter-white" style="filter: brightness(0) invert(1);">
+                        <h5 class="mb-0">CHEMYUKTI</h5>
+                    </div>
+                    <p>Research-Informed. Learner-Focused. Outcome-Oriented. Powered by CHEM (Cybernetics & Human Engineering Methods).</p>
+                    <div class="mt-4">
+                        <a href="#" class="me-3 fs-5"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="me-3 fs-5"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="me-3 fs-5"><i class="bi bi-google"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5>Ecosystem</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('main.index') }}">CHEMYUKTI</a></li>
+                        <li><a href="https://pratipariksha.in" target="_blank">Pratipariksha Student</a></li>
+                        <li><a href="https://pratipariksha.org" target="_blank">Pratipariksha Institution</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5>Programs</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('main.chea') }}">CHEA Program</a></li>
+                        <li><a href="{{ url_for('main.loop90') }}">Loop90 Framework</a></li>
+                        <li><a href="{{ url_for('main.chet') }}">CHET Admission</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p><i class="bi bi-geo-alt me-2"></i> [TEMP ADDRESS REQUIRED]</p>
+                    <p><i class="bi bi-envelope me-2"></i> info@chemyukti.com</p>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-outline-light btn-sm rounded-pill px-4">Send a Message</a>
+                </div>
+            </div>
+            <hr class="mt-5 border-secondary">
+            <div class="text-center small">
+                <p class="mb-0">&copy; 2024 CHEMYUKTI. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
